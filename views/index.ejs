@@ -19,6 +19,7 @@
         </h1>
         <table>
             <tbody>
+            <!-- Autogenerate rows corresponding to the weather data -->
             <%
             for (const [key, value] of Object.entries(currentWeatherData.obs)) {
                 __append("<tr> <td>" + key + "</td> <td id='" + key + "'>" + value +"</td></tr>")
@@ -34,13 +35,18 @@
     <script>
         require(["js/format"], function (f) {
                 const socket = io();
+
                 const cityText = document.getElementById("cityText");
 
+                // add listener to the change city event
                 socket.on('change city', function (weatherData) {
+                    console.log("New weather data received");
                     weatherData = JSON.parse(weatherData);
 
-                    console.log("New weather data received");
+                    // update the city UI
                     cityText.textContent = f.getFormattedCity(weatherData);
+
+                    // update the weather UI
                     for (const [key, value] of Object.entries(weatherData.obs)) {
                         const elmnt = document.getElementById(key);
                         elmnt.textContent = value;
