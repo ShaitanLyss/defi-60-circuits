@@ -1,3 +1,5 @@
-export function getFormattedCity(weatherData) {
-    return weatherData.city + " en " + weatherData.country;
-}
+define({
+    getFormattedCity: (weatherData) => {
+        return weatherData.city + " en " + weatherData.country;
+    }
+});

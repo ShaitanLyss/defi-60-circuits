@@ -2,24 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Random weather forecast</title>
+    <title>RandomWeather.com</title>
+    <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
     <header>
-        <h1>RandomWeatherForecast.com</h1>
+        <h1>RandomWeather.com</h1>
     </header>
     <section>
-        <h1 id="cityName"> City </h1>
-        <p> Weather data</p>
+        <h1 id="cityText">
+            <%=f.getFormattedCity(currentWeatherData)%>
+        </h1>
+        <ul>
+            <li><label>Temps</label><span id="weather"><%=currentWeatherData.obs.weather[0].description%></span></li>
+        </ul>
+        <p id="weather"> <%=JSON.stringify(currentWeatherData.obs)%></p>
     </section>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/require.js"></script>
     <script>
-        const socket = io();
-        socket.on('change city', function (weatherData) {
-            console.log("New weather data : " + weatherData);
-        })
+        require(["js/format"], function (f) {
+                const socket = io();
+                const cityText = document.getElementById("cityText");
 
+                socket.on('change city', function (weatherData) {
+                    weatherData = JSON.parse(weatherData);
+
+                    console.log("New weather data received");
+                    cityText.textContent = f.getFormattedCity(weatherData);
+
+                });
+            },
+            function (err) {
+                console.error('ERROR : ', err.requireType) ;
+                console.error('MODULES : ', err.requireModules) ;
+            }
+        );
     </script>
 </body>
 </html>
