@@ -36,6 +36,10 @@
 
                     console.log("New weather data received");
                     cityText.textContent = f.getFormattedCity(weatherData);
+                    for (const [key, value] of Object.entries(weatherData.obs)) {
+                        const elmnt = document.getElementById(key);
+                        elmnt.textContent = value;
+                    }
 
                 });
             },
