@@ -1,3 +1,50 @@
 h1 {
-    color: blue;
+    color: rgb(207 255 171);
+    font-family: 'Fredoka', cursive;
+
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left:auto;
+    margin-right:auto;
+
+    // workaround for IE11
+    display: table;
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+}
+
+html {
+    background-image:url("/img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-auto-flow: column;
+
+    height: 100%;
+}
+
+body {
+    background-color: #242729e6;
+    padding: 1em;
+    border: 4mm ridge rgb(177 131 54 / 85%);
+}
+
+section {
+    color: #ffffff;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
 }
