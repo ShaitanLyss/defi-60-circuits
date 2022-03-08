@@ -5,8 +5,8 @@ A server-client app that displays the weather for a random city in real time.
 
 
 ## Installation
-- node js must be installed.
-Install with npm after cloning the repository
+- Install node js
+- Install the project with npm after cloning the repository
 
 ```bash
   npm install
