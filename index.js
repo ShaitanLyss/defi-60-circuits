@@ -92,10 +92,10 @@ function changeDisplayedCityWeather() {
         currentWeatherData.country = countries.getName(response.data.sys.country, "fr");
         currentWeatherData.obs = {
             "Temps": response.data.weather[0].description,
-            "Température": response.data.main.temp + "°",
-            "Ressenti": response.data.main.feels_like + "°",
+            "Température": Math.round(response.data.main.temp) + "°C",
+            "Ressenti": Math.round(response.data.main.feels_like) + "°C",
             "Humidité": response.data.main.humidity + " %",
-            "Vent": response.data.wind.speed + " km/h"
+            "Vent": (response.data.wind.speed * 3.6).toFixed(2) + " km/h"
         };
         console.log(
             "now displaying weather for " + currentWeatherData.city +
