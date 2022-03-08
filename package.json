@@ -10,5 +10,8 @@
     "ejs": "^3.1.6",
     "i18n-iso-countries": "^7.3.0",
     "requirejs": "^2.3.6"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
