@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Random weather forecast</title>
 </head>
 <body>
-$END$
+    <header>
+        <h1>RandomWeatherForecast.com</h1>
+    </header>
+    <section>
+        <h1 id="cityName"> City </h1>
+        <p> Weather data</p>
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('change city', function (weatherData) {
+            console.log("New weather data : " + weatherData);
+        })
+
+    </script>
 </body>
 </html>
