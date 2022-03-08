@@ -90,7 +90,10 @@ function changeDisplayedCityWeather() {
     axios.request(options).then(function (response) {
         currentWeatherData.city = response.data.name;
         currentWeatherData.country = countries.getName(response.data.sys.country, "fr");
-        currentWeatherData.obs = response.data;
+        currentWeatherData.obs = {
+            "Temps": response.data.weather[0].description,
+            "Température": response.data.main.temp
+        };
         console.log(
             "now displaying weather for " + currentWeatherData.city +
             " in " + countries.getName(response.data.sys.country, "en")

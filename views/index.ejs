@@ -13,10 +13,15 @@
         <h1 id="cityText">
             <%=f.getFormattedCity(currentWeatherData)%>
         </h1>
-        <ul>
-            <li><label>Temps</label><span id="weather"><%=currentWeatherData.obs.weather[0].description%></span></li>
-        </ul>
-        <p id="weather"> <%=JSON.stringify(currentWeatherData.obs)%></p>
+        <table>
+            <tbody>
+            <%
+            for (const [key, value] of Object.entries(currentWeatherData.obs)) {
+                __append("<tr> <td>" + key + "</td> <td id='" + key + "'>" + value +"</td></tr>")
+            }
+            %>
+            </tbody>
+        </table>
     </section>
 
     <script src="/socket.io/socket.io.js"></script>
