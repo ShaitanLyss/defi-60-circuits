@@ -104,7 +104,7 @@ function changeDisplayedCityWeather() {
         io.emit('change-city', JSON.stringify(currentWeatherData));
 
     }).catch(function (error) {
-        console.error(error);
+        console.error(error.response.data.message);
     });
 }
 
