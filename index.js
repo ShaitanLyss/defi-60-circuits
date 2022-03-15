@@ -1,6 +1,8 @@
 // Consts
-const changeCityIntervalInSeconds = 30;
+const cityUpdateIntervalInSeconds = 30;
+const server_address = "127.0.0.1";
 const server_port = 12000;
+const rapidapi_key = "d5438c54a8mshd961ce86050ec55p1ca751jsna86159793f2f";
 
 // Global imports
 const path = require("path");
@@ -34,7 +36,7 @@ const citiesLines = fs.readFileSync(cities.file, 'utf8').split('\n');
 let currentWeatherData = {
     city: "Ville",
     country: "Pays",
-    weather: null
+    weather: {}
 };
 
 
@@ -82,7 +84,7 @@ function changeDisplayedCityWeather() {
         },
         headers: {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': 'd5438c54a8mshd961ce86050ec55p1ca751jsna86159793f2f'
+            'x-rapidapi-key': rapidapi_key
         }
     };
 
@@ -112,10 +114,10 @@ function changeDisplayedCityWeather() {
 changeDisplayedCityWeather();
 // Set the city change to occur every x seconds
 setInterval(changeDisplayedCityWeather,
-    changeCityIntervalInSeconds * 1000);
+    cityUpdateIntervalInSeconds * 1000);
 
 
 // Server start
-server.listen(server_port, () => {
-    console.log('listening on *:' + server_port);
+server.listen(server_port, server_address, () => {
+    console.log('listening on ' + server_address + ':' + server_port);
 })
