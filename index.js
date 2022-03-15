@@ -1,8 +1,8 @@
-// Consts
+// Config
+require('dotenv-save').config()
 const cityUpdateIntervalInSeconds = 30;
 const server_address = "127.0.0.1";
 const server_port = 12000;
-const rapidapi_key = "d5438c54a8mshd961ce86050ec55p1ca751jsna86159793f2f";
 
 // Global imports
 const path = require("path");
@@ -84,7 +84,7 @@ function changeDisplayedCityWeather() {
         },
         headers: {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': rapidapi_key
+            'x-rapidapi-key': process.env.RAPIDAPI_KEY
         }
     };
 
