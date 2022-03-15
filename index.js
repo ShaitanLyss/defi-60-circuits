@@ -1,10 +1,15 @@
 // Config
-require('dotenv-save').config()
 const cityUpdateIntervalInSeconds = 30;
 const server_address = "127.0.0.1";
 const server_port = 12000;
 
+// Consts
+const MISSING_FILE_ERR = 1
+const INVALID_ENV_VAR_ERR = 2;
+
+
 // Global imports
+const fs = require('fs');
 const path = require("path");
 const requirejs =require('requirejs');
 requirejs.config({
@@ -14,6 +19,20 @@ requirejs.config({
     nodeRequire: require
 });
 const format = requirejs("public/js/format");
+
+
+// Import .env variables
+if (!fs.existsSync(".env")) {
+    console.error('No .env file, make sure a .env following .env.template has been created');
+    process.exit(MISSING_FILE_ERR);
+}
+
+require('dotenv-save').config()
+
+if (!process.env.RAPIDAPI_KEY){
+    console.error('Missing or invalid variable, make sure .env respects .env.template');
+    process.exit(INVALID_ENV_VAR_ERR);
+}
 
 
 // Server setup
@@ -30,7 +49,6 @@ const io = new Server(server);
 const sample = require('lodash.sample');
 const axios = require("axios").default;
 const countries = require("i18n-iso-countries");
-const fs = require('fs');
 const cities = require('cities-with-1000');
 const citiesLines = fs.readFileSync(cities.file, 'utf8').split('\n');
 let currentWeatherData = {
