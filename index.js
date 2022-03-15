@@ -101,7 +101,7 @@ function changeDisplayedCityWeather() {
             "now displaying weather for " + currentWeatherData.city +
             " in " + countries.getName(response.data.sys.country, "en")
         );
-        io.emit('change city', JSON.stringify(currentWeatherData));
+        io.emit('change-city', JSON.stringify(currentWeatherData));
 
     }).catch(function (error) {
         console.error(error);
