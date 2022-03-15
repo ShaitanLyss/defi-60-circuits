@@ -39,7 +39,7 @@
                 const cityText = document.getElementById("cityText");
 
                 // add listener to the change city event
-                socket.on('change city', function (weatherData) {
+                socket.on('change-city', function (weatherData) {
                     console.log("New weather data received");
                     weatherData = JSON.parse(weatherData);
 
